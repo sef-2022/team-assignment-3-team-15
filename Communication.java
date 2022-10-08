@@ -2,6 +2,7 @@ public class Communication {
     private String type;
     private String messageSent;
     private boolean messageRecieved;
+    private boolean answerable;
 
     public void setType(String type) {
         this.type = type;
@@ -28,6 +29,18 @@ public class Communication {
     }
 
     public void printMessageSent() {
-        System.out.printf("Message sent to Event Manager: '%s'%n%n",getMessageSent());
+        System.out.printf("Message sent: '%s'%n%n",getMessageSent());
+    }
+
+    public void setAnswerable(boolean answerable) {
+        this.answerable = answerable;
+    }
+
+    public boolean isAnswerable() {
+        return answerable;
+    }
+
+    public void printMessageRecieved() {
+        System.out.printf("Message recieved: '%s'%n%n",getMessageSent());
     }
 }
