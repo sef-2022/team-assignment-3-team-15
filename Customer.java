@@ -1,8 +1,9 @@
 import java.util.*; 
 
 public class Customer {
-    private String name = "";
-    private String email = "";
+    private String name;
+    private String email;
+    private String phone;
 
     public void setName(String newName) {
         this.name = newName;
@@ -18,6 +19,14 @@ public class Customer {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Event bookEvent(Venue venue, Customer customer, Date date, int attendees, Package packageEvent,FoodMenu menu , boolean addMusicBand, boolean addSoundSys, boolean addFlowerArrange) {
