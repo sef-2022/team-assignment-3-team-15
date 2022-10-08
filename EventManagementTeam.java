@@ -26,4 +26,8 @@ public class EventManagementTeam {
     public boolean isTeam() {
         return team;
     }
+
+    public void sendBill(int price, FinanceManager financeManager) {
+        financeManager.totalBill += price;
+    }
 }
