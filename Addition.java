@@ -1,13 +1,13 @@
 public class Addition {
-    protected boolean booked = false;
+    protected boolean ordered = false;
     protected int price;
 
-    public boolean isBooked() {
-        return booked;
+    public boolean isOrdered() {
+        return ordered;
     }
 
-    public void updateBooked(boolean input) {
-        this.booked = input;
+    public void setOrdered(boolean input) {
+        this.ordered = input;
     }
 
     public void setPrice(int price) {
