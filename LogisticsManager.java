@@ -18,8 +18,4 @@ public class LogisticsManager extends EventManagementTeam {
         addition.setOrdered(true);
         System.out.println("Ordered addition");
     }
-
-    public void updatePricePerHead(Event event, int newPrice){
-        event.getFoodMenu().setPricePerHead(newPrice);
-    }
 }
