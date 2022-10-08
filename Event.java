@@ -19,6 +19,9 @@ public class Event {
     private SeatingArrangements seatingArrangement;
     private boolean foodDelivered; 
     private boolean foodOrdered;
+    private boolean deliverMusicBand = false;
+    private boolean deliverSoundSystem = false;
+    private boolean deliverFlowerDecor = false;
 
     public void setEventID(int eventID) {
         this.eventID = eventID;
@@ -236,4 +239,22 @@ public class Event {
         this.budget = budget;
     }
 
+    public void setDeliverFlowerDecor(boolean deliverFlowerDecor) {
+        this.deliverFlowerDecor = deliverFlowerDecor;
+    }
+    public boolean isDeliverFlowerDecor() {
+        return deliverFlowerDecor;
+    }
+    public void setDeliverMusicBand(boolean deliverMusicBand) {
+        this.deliverMusicBand = deliverMusicBand;
+    }
+    public boolean isDeliverMusicBand() {
+        return deliverMusicBand;
+    }
+    public void setDeliverSoundSystem(boolean deliverSoundSystem) {
+        this.deliverSoundSystem = deliverSoundSystem;
+    }
+    public boolean isDeliverSoundSystem() {
+        return deliverSoundSystem;
+    }
 }
