@@ -3,7 +3,7 @@ import java.util.*;
 public class Event {
     private int eventID = -999;
     private int budget = -999;
-    private List<String> foodMenu = new ArrayList<String>(); 
+    private FoodMenu foodMenu = new FoodMenu(); 
     public Venue venue = new Venue();
     private Date reservedDate;
     private Customer customer;
@@ -14,32 +14,7 @@ public class Event {
     private boolean includesFlowerDecor = false;
     private MusicBand musicBand;
     private SoundSystem soundSystem;
-
-    public List<String> getFoodMenu() {
-        return foodMenu;
-    }
-
-    public void addFood(String newFood) {
-        this.foodMenu.add(newFood);
-    }
-
-    public void removeFood(String delFood) {
-        boolean isRemoved = this.foodMenu.remove(delFood);
-        if (isRemoved) {
-            System.out.printf("Removed %s from food menu%n", delFood);
-        }
-        else {
-            System.out.printf("Did not find %s in food menu%n", delFood);
-        }
-    }
-
-    public void printMenu() {
-        System.out.println("Food Menu:");
-        for (String string : this.getFoodMenu()) {
-            System.out.println(string);
-        }
-        System.out.println();
-    }
+    private FlowerArrange flowerArrange;
 
     public void setEventID(int eventID) {
         this.eventID = eventID;
@@ -95,18 +70,21 @@ public class Event {
         System.out.printf("%s's price: %s%n", venue.getName(), venue.getPrice());
         System.out.printf("%s's address: %s%n%s's link: %s%n", venue.getName() ,venue.getAddress(), venue.getName(),venue.getLink());
         printReserveDate();
-        System.out.printf("Number of attendees: %s%n", this.getAttendees());
-        printMenu();
+        System.out.printf("Number of attendees: %s%n%n", this.getAttendees());
+        if (getIncludesMusicBand() || getIncludesSoundSystem() || getIncludesFlowerDecor()) {
+            System.out.println("Additions added to event:");
+        }
         if (getIncludesMusicBand()){
             System.out.printf("Music band selected: %s%n", musicBand.getName());
             System.out.printf("Band Price: %d%n%n", musicBand.getPrice());
         }
         if (getIncludesSoundSystem()){
             System.out.printf("Sound System selected: %s%n", soundSystem.getType());
-            System.out.printf("Sound System Price: %d%n%n", soundSystem.getPrice());
+            System.out.printf("Sound System price: %d%n%n", soundSystem.getPrice());
         }
         if (getIncludesFlowerDecor()){
-            System.out.println("flower decor included");
+            System.out.printf("Flower arrangement selected: %s%n", flowerArrange.getArrangementType());
+            System.out.printf("Flower arrangement price: %d%n%n", flowerArrange.getPrice());
         }
 
         System.out.println("--------------");
@@ -166,5 +144,13 @@ public class Event {
 
     public void setSoundSystem(SoundSystem soundSystem) {
         this.soundSystem = soundSystem;
+    }
+
+    public void setFlowerArrange(FlowerArrange flowerArrange) {
+        this.flowerArrange = flowerArrange;
+    }
+
+    public FlowerArrange getFlowerArrange() {
+        return flowerArrange;
     }
 }
