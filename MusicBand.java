@@ -1,8 +1,9 @@
 import java.util.*; 
+import java.time.LocalDate;
 
 public class MusicBand extends Addition{
     private String name;
-    private List<Date> availableDates = new ArrayList<Date>();  
+    private List<LocalDate> availableDates = new ArrayList<LocalDate>();  
 
 
     public void setName(String name) {
@@ -13,7 +14,7 @@ public class MusicBand extends Addition{
         return name;
     }
 
-    public Date reserveDate(Date input) {
+    public LocalDate reserveDate(LocalDate input) {
         boolean isAvailable = availableDates.remove(input);
         if (isAvailable){
             return input;
@@ -23,17 +24,17 @@ public class MusicBand extends Addition{
         }
     }
 
-    public List<Date> getAvailableDates() {
+    public List<LocalDate> getAvailableDates() {
         return availableDates;
     }
 
-    public void addDate(Date newDate) {
+    public void addDate(LocalDate newDate) {
         this.availableDates.add(newDate);
     }
 
     public void printDates() {
         System.out.println("Available Dates:");
-        for (Date dates : this.getAvailableDates()) {
+        for (LocalDate dates : this.getAvailableDates()) {
             System.out.println(dates);
         }
         System.out.println();

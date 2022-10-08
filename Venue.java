@@ -1,7 +1,8 @@
+import java.time.LocalDate;
 import java.util.*; 
 
 public class Venue {
-    private List<Date> availableDates = new ArrayList<Date>();  
+    private List<LocalDate> availableDates = new ArrayList<LocalDate>();  
     private String name = "";
     private String address = "";
     private String link = "";
@@ -23,7 +24,7 @@ public class Venue {
         return link;
     }
 
-    public Date reserveDate(Date input) {
+    public LocalDate reserveDate(LocalDate input) {
         boolean isAvailable = availableDates.remove(input);
         if (isAvailable){
             return input;
@@ -33,17 +34,17 @@ public class Venue {
         }
     }
 
-    public List<Date> getAvailableDates() {
+    public List<LocalDate> getAvailableDates() {
         return availableDates;
     }
 
-    public void addDate(Date newDate) {
+    public void addDate(LocalDate newDate) {
         this.availableDates.add(newDate);
     }
 
     public void printDates() {
         System.out.println("Available Dates:");
-        for (Date dates : this.getAvailableDates()) {
+        for (LocalDate dates : this.getAvailableDates()) {
             System.out.println(dates);
         }
         System.out.println();

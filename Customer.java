@@ -1,6 +1,5 @@
-import java.util.*; 
-import java.text.DateFormat;  
-import java.text.SimpleDateFormat;  
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate; 
 
 public class Customer {
     private String name;
@@ -31,7 +30,7 @@ public class Customer {
         this.phone = phone;
     }
 
-    public Event bookEvent(Venue venue, Customer customer, Date date, int attendees,SeatingArrangements seating, Package packageEvent,FoodMenu menu , boolean addMusicBand, boolean addSoundSys, boolean addFlowerArrange) {
+    public Event bookEvent(Venue venue, Customer customer, LocalDate date, int attendees,SeatingArrangements seating, Package packageEvent,FoodMenu menu , boolean addMusicBand, boolean addSoundSys, boolean addFlowerArrange) {
         boolean isError = false;
         Event event = new Event();
         event.setEventID(0);
@@ -61,14 +60,14 @@ public class Customer {
         }
     }
 
-    public Communication requestInspection(Venue venue, Date requestDate) {
+    public Communication requestInspection(Venue venue, LocalDate requestDate) {
         if (venue.getAvailableDates().contains(requestDate)) {
             System.out.printf("%s is avaialble for inspection on %tB %<te, %<tY%n", venue.getName(), requestDate); 
             Communication inspectionCommunication = new Communication();
             inspectionCommunication.setAnswerable(true);
             inspectionCommunication.setType("Inspection of venue");
-            DateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");  
-            String strDate = dateFormat.format(requestDate);  
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("LLLL dd, yyyy");  
+            String strDate = requestDate.format(formatter);  
             inspectionCommunication.setMessageSent("Inspection date of " + venue.getName() + " on " + strDate);
             inspectionCommunication.printMessageSent();
             

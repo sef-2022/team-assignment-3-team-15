@@ -1,4 +1,5 @@
 import java.util.*; 
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
@@ -38,9 +39,9 @@ public class Main {
         venueA.setName("Venue A");
 
         //set Dates for venue A
-        Date first = new Date(122,9,8);
-        Date second = new Date(122,9,9);
-        Date third = new Date(122,9,10);
+        LocalDate first = LocalDate.of(2022,9,8);
+        LocalDate second = LocalDate.of(2022,9,9);
+        LocalDate third = LocalDate.of(2022,9,10);
         venueA.addDate(first);
         venueA.addDate(second);
         venueA.addDate(third);
@@ -55,8 +56,8 @@ public class Main {
         venueB.setName("Venue B");
 
         //set Dates for venue B
-        Date fourth = new Date(122,9,11);
-        Date fifth = new Date(122,9,12);
+        LocalDate fourth = LocalDate.of(2022,9,11);
+        LocalDate fifth = LocalDate.of(2022,9,12);
         venueB.addDate(third);
         venueB.addDate(fourth);
         venueB.addDate(fifth);

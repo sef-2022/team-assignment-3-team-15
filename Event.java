@@ -1,11 +1,11 @@
-import java.util.*; 
+import java.time.LocalDate;
 
 public class Event {
     private int eventID = -999;
     private int budget = 0;
     private FoodMenu foodMenu = new FoodMenu(); 
     public Venue venue = new Venue();
-    private Date reservedDate;
+    private LocalDate reservedDate;
     private boolean booked = false;
     private Customer customer;
     private int attendees = 1;
@@ -34,11 +34,11 @@ public class Event {
         this.venue = venue;
     }
 
-    public void reserveDate(Date reserveDate) {
+    public void reserveDate(LocalDate reserveDate) {
         this.reservedDate = this.venue.reserveDate(reserveDate);
     }
 
-    public Date getReservedDate() {
+    public LocalDate getReservedDate() {
         return reservedDate;
     }
 
