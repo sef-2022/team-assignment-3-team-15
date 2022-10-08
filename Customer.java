@@ -20,7 +20,7 @@ public class Customer {
         return email;
     }
 
-    public Event bookEvent(Venue venue, Customer customer, Date date, int attendees, Package packageEvent, boolean addMusicBand, boolean addSoundSys, boolean addFlowerArrange) {
+    public Event bookEvent(Venue venue, Customer customer, Date date, int attendees, Package packageEvent,FoodMenu menu , boolean addMusicBand, boolean addSoundSys, boolean addFlowerArrange) {
         boolean isError = false;
         Event event = new Event();
         event.setEventID(0);
@@ -29,6 +29,7 @@ public class Customer {
         event.setPackageUsed(packageEvent);
         event.setAttendees(attendees);
         event.reserveDate(date);
+        event.setFoodMenu(menu);
         event.setIncludesMusicBand(addMusicBand);
         event.setIncludesSoundSystem(addSoundSys);
         event.setIncludesFlowerDecor(addFlowerArrange);
