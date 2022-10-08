@@ -227,7 +227,7 @@ public class Main {
 
         //create event manager
         EventManager eventManager = new EventManager();
-        eventManager.setName("Jim");
+        eventManager.setName("Ernest");
         eventManager.setID(10);
         eventManager.setTeam(true);
 
@@ -318,6 +318,8 @@ public class Main {
         System.out.println("Caterer removes vegan burger and adds cheeseburger to event:");
         System.out.println("-------------------------------------------------------");
         Caterer caterer = new Caterer();
+        caterer.setID(21);
+        caterer.setName("Charlie");
         caterer.addFoodToMenu("Vegan Burger", event1);
 
         //caterer remove food from event with event id = 0
@@ -344,5 +346,38 @@ public class Main {
         caterer.updatePricePerHead(event1, 18);
         System.out.println("New price per head: $" + event1.getFoodMenu().getPricePerHead());
         System.out.println("New Total Price: $" + event1.calculatTotalPrice());
+
+        System.out.println("---------------------------------------------------------------------");
+
+        LogisticsManager logisticsManager = new LogisticsManager();
+        logisticsManager.setID(35);
+        logisticsManager.setName("Larry");
+
+        System.out.println("Logistic manager orders and delivers all additions:");
+        System.out.println("---------------------------------------------------");
+        //logistic manager orders all included additions
+        if (event1.getMusicBand().isOrdered() == false && event1.getIncludesMusicBand() == true){
+            logisticsManager.orderAddition(event1.getMusicBand());
+        }
+        if (event1.getSoundSystem().isOrdered() == false && event1.getIncludesSoundSystem() == true){
+            logisticsManager.orderAddition(event1.getSoundSystem());
+        }
+        if (event1.getFlowerArrange().isOrdered() == false && event1.getIncludesFlowerDecor() == true){
+            logisticsManager.orderAddition(event1.getFlowerArrange());
+        }
+
+        //logistic manager delivers all included additions
+        if (event1.isDeliverMusicBand() == false && event1.getIncludesMusicBand() == true){
+            logisticsManager.deliverAddition(event1, event1.getMusicBand());
+        }
+        if (event1.isDeliverSoundSystem() == false && event1.getIncludesSoundSystem() == true){
+            logisticsManager.deliverAddition(event1, event1.getSoundSystem());
+        }
+        if (event1.isDeliverFlowerDecor() == false && event1.getIncludesFlowerDecor() == true){
+            logisticsManager.deliverAddition(event1, event1.getFlowerArrange());
+        }
+
+        System.out.println("---------------------------------------------------------------------");
+
     }
 }
