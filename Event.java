@@ -61,7 +61,7 @@ public class Event {
 
     public void printReserveDate() {
         if (this.reservedDate != null){
-            System.out.printf("Venue's reserved date is %tB %<te, %<tY%n", reservedDate);
+            System.out.printf("%s's reserved date is %tB %<te, %<tY%n",venue.getName(),reservedDate);
         }
         else{
             System.out.println("No date reserved");
@@ -83,7 +83,9 @@ public class Event {
     public void printEventSummary(){
         System.out.println("--------------");
         System.out.printf("%s's booking for eventID: %d%n", this.customer.getName(),eventID);
-        System.out.printf("Venue's address: %s%nVenue's link: %s%n", venue.getAddress(),venue.getLink());
+        System.out.printf("Event package selected: %s%n", packageUsed.getName());
+        System.out.printf("Venue selected: %s%n", venue.getName());
+        System.out.printf("%s's address: %s%n%s's link: %s%n", venue.getName() ,venue.getAddress(), venue.getName(),venue.getLink());
         printReserveDate();
         System.out.printf("Number of attendees: %s%n", this.getAttendees());
         printMenu();
