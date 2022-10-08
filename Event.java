@@ -4,6 +4,9 @@ public class Event {
     private int eventID = -999;
     private int budget = -999;
     private List<String> foodMenu = new ArrayList<String>(); 
+    public Venue venue = new Venue();
+    private Date reservedDate;
+    private Customer customer;
 
     public List<String> getFoodMenu() {
         return foodMenu;
@@ -40,5 +43,30 @@ public class Event {
 
     public void printEventID() {
         System.out.printf("Event ID: %d%n", eventID);
+    }
+
+    public void setVenue(Venue venue) {
+        this.venue = venue;
+    }
+
+    public void reserveDate(Date reserveDate) {
+        this.reservedDate = this.venue.reserveDate(reserveDate);
+    }
+
+    public Date getReservedDate() {
+        return reservedDate;
+    }
+
+    public void printReserveDate() {
+        if (this.reservedDate != null){
+            System.out.printf("Reserved date is %tB %<te, %<tY%n", reservedDate);
+        }
+        else{
+            System.out.println("No date reserved");
+        }
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
