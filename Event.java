@@ -9,6 +9,11 @@ public class Event {
     private Customer customer;
     private int attendees = 1;
     private Package packageUsed;
+    private boolean includesMusicBand = false;
+    private boolean includesSoundSystem = false;
+    private boolean includesFlowerDecor = false;
+    private MusicBand musicBand;
+    private SoundSystem soundSystem;
 
     public List<String> getFoodMenu() {
         return foodMenu;
@@ -33,6 +38,7 @@ public class Event {
         for (String string : this.getFoodMenu()) {
             System.out.println(string);
         }
+        System.out.println();
     }
 
     public void setEventID(int eventID) {
@@ -84,11 +90,25 @@ public class Event {
         System.out.println("--------------");
         System.out.printf("%s's booking for eventID: %d%n", this.customer.getName(),eventID);
         System.out.printf("Event package selected: %s%n", packageUsed.getName());
+        System.out.printf("Event package price: %d%n", packageUsed.getPrice());
         System.out.printf("Venue selected: %s%n", venue.getName());
+        System.out.printf("%s's price: %s%n", venue.getName(), venue.getPrice());
         System.out.printf("%s's address: %s%n%s's link: %s%n", venue.getName() ,venue.getAddress(), venue.getName(),venue.getLink());
         printReserveDate();
         System.out.printf("Number of attendees: %s%n", this.getAttendees());
         printMenu();
+        if (getIncludesMusicBand()){
+            System.out.printf("Music band selected: %s%n", musicBand.getName());
+            System.out.printf("Band Price: %d%n%n", musicBand.getPrice());
+        }
+        if (getIncludesSoundSystem()){
+            System.out.printf("Sound System selected: %s%n", soundSystem.getType());
+            System.out.printf("Sound System Price: %d%n%n", soundSystem.getPrice());
+        }
+        if (getIncludesFlowerDecor()){
+            System.out.println("flower decor included");
+        }
+
         System.out.println("--------------");
     }
 
@@ -106,5 +126,45 @@ public class Event {
 
     public void setPackageUsed(Package packageUsed) {
         this.packageUsed = packageUsed;
+    }
+
+    public void setIncludesFlowerDecor(boolean includesFlowerDecor) {
+        this.includesFlowerDecor = includesFlowerDecor;
+    }
+
+    public void setIncludesMusicBand(boolean includesMusicBand) {
+        this.includesMusicBand = includesMusicBand;
+    }
+
+    public void setIncludesSoundSystem(boolean includesSoundSystem) {
+        this.includesSoundSystem = includesSoundSystem;
+    }
+
+    public boolean getIncludesFlowerDecor() {
+        return includesFlowerDecor;
+    }
+
+    public boolean getIncludesMusicBand() {
+        return includesMusicBand;
+    }
+
+    public boolean getIncludesSoundSystem() {
+        return includesSoundSystem;
+    }
+
+    public void setMusicBand(MusicBand musicBand) {
+        this.musicBand = musicBand;
+    }
+
+    public MusicBand getMusicBand() {
+        return musicBand;
+    }
+
+    public SoundSystem getSoundSystem() {
+        return soundSystem;
+    }
+
+    public void setSoundSystem(SoundSystem soundSystem) {
+        this.soundSystem = soundSystem;
     }
 }
