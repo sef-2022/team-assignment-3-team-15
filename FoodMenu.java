@@ -5,12 +5,8 @@ public class FoodMenu {
     private String name;
     private int pricePerHead;
 
-    public void addFoodMenu(String food) {
-        menu.add(food);
-    }
-
-    public void removeFoodMenu(String food) {
-        menu.remove(food);
+    public void setMenu(List<String> menu) {
+        this.menu = menu;
     }
 
     public List<String> getMenu() {
