@@ -31,7 +31,7 @@ public class Customer {
         this.phone = phone;
     }
 
-    public Event bookEvent(Venue venue, Customer customer, Date date, int attendees, Package packageEvent,FoodMenu menu , boolean addMusicBand, boolean addSoundSys, boolean addFlowerArrange) {
+    public Event bookEvent(Venue venue, Customer customer, Date date, int attendees,SeatingArrangements seating, Package packageEvent,FoodMenu menu , boolean addMusicBand, boolean addSoundSys, boolean addFlowerArrange) {
         boolean isError = false;
         Event event = new Event();
         event.setEventID(0);
@@ -41,6 +41,7 @@ public class Customer {
         event.setAttendees(attendees);
         event.reserveDate(date);
         event.setFoodMenu(menu);
+        event.setSeatingArrangement(seating);
         event.setIncludesMusicBand(addMusicBand);
         event.setIncludesSoundSystem(addSoundSys);
         event.setIncludesFlowerDecor(addFlowerArrange);
@@ -60,55 +61,71 @@ public class Customer {
         }
     }
 
-    public void requestInspection(Venue venue, Date requestDate) {
+    public Communication requestInspection(Venue venue, Date requestDate) {
         if (venue.getAvailableDates().contains(requestDate)) {
             System.out.printf("%s is avaialble for inspection on %tB %<te, %<tY%n", venue.getName(), requestDate); 
             Communication inspectionCommunication = new Communication();
-            inspectionCommunication.setType("Request Inspection");
+            inspectionCommunication.setAnswerable(true);
+            inspectionCommunication.setType("Inspection of venue");
             DateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");  
             String strDate = dateFormat.format(requestDate);  
             inspectionCommunication.setMessageSent("Inspection date of " + venue.getName() + " on " + strDate);
             inspectionCommunication.printMessageSent();
+            
             //send message to manager
+            return inspectionCommunication;
         }
         else {
-            System.out.printf("%s is not avaialble for inspection on %tB %<te, %<tY, pick a different date", venue.getName(), requestDate); 
+            System.out.printf("%s is not avaialble for inspection on %tB %<te, %<tY, pick a different date", venue.getName(), requestDate);
+            return null; 
         }
     }
 
-    public void requestMenuAdd(Event event, String food) {
+    public Communication requestMenuAdd(Event event, String food) {
         System.out.printf("Try to add %s to event%n", food); 
         Communication menuAddCommunication = new Communication();
-        menuAddCommunication.setType("Request Add for Menu");
+        menuAddCommunication.setAnswerable(true);
+        menuAddCommunication.setType("Add "+ food + " to menu");
         menuAddCommunication.setMessageSent("Add "+ food +" to menu of eventID = " + event.getEventID());
         menuAddCommunication.printMessageSent();
+        
         //send message to manager
+        return menuAddCommunication;
     }
     
-    public void requestMenuRemove(Event event, String food) {
+    public Communication requestMenuRemove(Event event, String food) {
         System.out.printf("Try to remove %s from event%n", food); 
         Communication menuRemoveCommunication = new Communication();
-        menuRemoveCommunication.setType("Request Remove for Menu");
+        menuRemoveCommunication.setAnswerable(true);
+        menuRemoveCommunication.setType("Remove "+ food + " from menu");
         menuRemoveCommunication.setMessageSent("Remove "+ food +" from menu of eventID = " + event.getEventID());
         menuRemoveCommunication.printMessageSent();
+        
         //send message to manager
+        return menuRemoveCommunication;
     }
 
-    public void askQuery(String string){
+    public Communication askQuery(String string){
         System.out.println("Try to send a query"); 
         Communication queryCommunication = new Communication();
+        queryCommunication.setAnswerable(true);
         queryCommunication.setType("Query");
         queryCommunication.setMessageSent(string);
         queryCommunication.printMessageSent();
+        
         //send message to manager
+        return queryCommunication;
     }
 
-    public void sendComplaint(String string){
+    public Communication sendComplaint(String string){
         System.out.println("Try to send a complaint"); 
         Communication compaintCommunication = new Communication();
+        compaintCommunication.setAnswerable(false);
         compaintCommunication.setType("Complaint");
         compaintCommunication.setMessageSent(string);
         compaintCommunication.printMessageSent();
+        
         //send message to manager
+        return compaintCommunication;
     }
 }
