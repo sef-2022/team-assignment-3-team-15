@@ -78,18 +78,17 @@ public class Main {
         //set menu for american food
         FoodMenu american = new FoodMenu();
         american.setPricePerHead(20);
-        american.addFoodMenu("Cheeseburger");
-        american.addFoodMenu("Hot dog");
-        american.addFoodMenu("Pizza");
+        american.getMenu().add("Cheeseburger");
+        american.getMenu().add("Hot dog");
+        american.getMenu().add("Pizza");
         american.setName("American");
         
-
         //set menu for chinese food
         FoodMenu chinese = new FoodMenu();
         chinese.setPricePerHead(15);
-        chinese.addFoodMenu("Dumpling");
-        chinese.addFoodMenu("Char Siu");
-        chinese.addFoodMenu("Siu Mai");
+        chinese.getMenu().add("Dumpling");
+        chinese.getMenu().add("Char Siu");
+        chinese.getMenu().add("Siu Mai");
         chinese.setName("Chinese");
 
         //print menus for customer
@@ -313,5 +312,37 @@ public class Main {
             answer.setMessageRecieved(true);
             answer.printMessageRecieved();
         }
+
+        System.out.println("---------------------------------------------------------------------");
+        //caterer add food to event with event id = 0
+        System.out.println("Caterer removes vegan burger and adds cheeseburger to event:");
+        System.out.println("-------------------------------------------------------");
+        Caterer caterer = new Caterer();
+        caterer.addFoodToMenu("Vegan Burger", event1);
+
+        //caterer remove food from event with event id = 0
+        caterer.removeFoodFromMenu("Cheeseburger", event1);
+        System.out.print("Updated ");
+        event1.getFoodMenu().printMenu();
+
+
+        System.out.println("Caterer orders and delivers food for event:");
+        System.out.println("-------------------------------------------------------");
+        //caterer orders food
+        if (!event1.isFoodOrdered()){
+            caterer.orderFood(event1);
+            System.out.println("Caterer ordered food");
+        }
+
+        //caterer delivers food to event
+        if (!event1.isFoodDelivered()){
+            caterer.deliverFood(event1);
+            System.out.println("Food was delivered by caterer");
+        }
+
+        //caterer changes price per head to 18
+        caterer.updatePricePerHead(event1, 18);
+        System.out.println("New price per head: $" + event1.getFoodMenu().getPricePerHead());
+        System.out.println("New Total Price: $" + event1.calculatTotalPrice());
     }
 }
