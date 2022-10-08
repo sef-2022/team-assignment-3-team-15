@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Event {
     private int eventID = -999;
-    private int budget = -999;
+    private int budget = 0;
     private FoodMenu foodMenu = new FoodMenu(); 
     public Venue venue = new Venue();
     private Date reservedDate;
@@ -65,28 +65,28 @@ public class Event {
         System.out.println("------------------------");
         System.out.printf("%s's booking for eventID: %d%n%n", this.customer.getName(),eventID);
         System.out.printf("Event package selected: %s%n", packageUsed.getName());
-        System.out.printf("Event package price: %d%n", packageUsed.getPrice());
-        System.out.printf("Number of attendees: %s%n%n", attendees);
+        System.out.printf("Event package price: $%d%n", packageUsed.getPrice());
+        System.out.printf("Number of attendees: %s people%n%n", attendees);
         System.out.printf("Venue selected: %s%n", venue.getName());
-        System.out.printf("%s's price: %s%n", venue.getName(), venue.getPrice());
+        System.out.printf("%s's price: $%s%n", venue.getName(), venue.getPrice());
         System.out.printf("%s's address: %s%n%s's link: %s%n", venue.getName() ,venue.getAddress(), venue.getName(),venue.getLink());
         printReserveDate();
         System.out.printf("%nMenu selected: %s%n", foodMenu.getName());
-        System.out.printf("Total Price of %s menu for %d attendees: %d%n%n", foodMenu.getName(), attendees, foodMenu.getPricePerHead() * attendees);
+        System.out.printf("Total Price of %s menu for %d attendees: $%d%n%n", foodMenu.getName(), attendees, foodMenu.getPricePerHead() * attendees);
         if (getIncludesMusicBand() || getIncludesSoundSystem() || getIncludesFlowerDecor()) {
             System.out.println("Additions added to event:");
         }
         if (getIncludesMusicBand()){
             System.out.printf("Music band selected: %s%n", musicBand.getName());
-            System.out.printf("Band Price: %d%n%n", musicBand.getPrice());
+            System.out.printf("Band Price: $%d%n%n", musicBand.getPrice());
         }
         if (getIncludesSoundSystem()){
             System.out.printf("Sound System selected: %s%n", soundSystem.getType());
-            System.out.printf("Sound System price: %d%n%n", soundSystem.getPrice());
+            System.out.printf("Sound System price: $%d%n%n", soundSystem.getPrice());
         }
         if (getIncludesFlowerDecor()){
             System.out.printf("Flower arrangement selected: %s%n", flowerArrange.getArrangementType());
-            System.out.printf("Flower arrangement price: %d%n%n", flowerArrange.getPrice());
+            System.out.printf("Flower arrangement price: $%d%n%n", flowerArrange.getPrice());
         }
 
         System.out.println("------------------------");
@@ -162,5 +162,29 @@ public class Event {
 
     public FoodMenu getFoodMenu() {
         return foodMenu;
+    }
+
+    public int calculatTotalPrice() {
+        // add additions price
+        if (includesFlowerDecor) {
+            budget += flowerArrange.getPrice();
+        }
+        if (includesMusicBand) {
+            budget += musicBand.getPrice();
+        }
+        if (includesSoundSystem) {
+            budget += soundSystem.getPrice();
+        }
+
+        //add menu total price
+        budget += foodMenu.getPricePerHead() * attendees;
+
+        //add venue price
+        budget += venue.getPrice();
+
+        //add package cost
+        budget += packageUsed.getPrice();
+
+        return budget;
     }
 }
