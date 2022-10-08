@@ -6,6 +6,7 @@ public class Event {
     private FoodMenu foodMenu = new FoodMenu(); 
     public Venue venue = new Venue();
     private Date reservedDate;
+    private boolean booked = false;
     private Customer customer;
     private int attendees = 1;
     private Package packageUsed;
@@ -15,6 +16,7 @@ public class Event {
     private MusicBand musicBand;
     private SoundSystem soundSystem;
     private FlowerArrange flowerArrange;
+    private SeatingArrangements seatingArrangement;
 
     public void setEventID(int eventID) {
         this.eventID = eventID;
@@ -66,7 +68,8 @@ public class Event {
         System.out.printf("%s's booking for eventID: %d%n%n", this.customer.getName(),eventID);
         System.out.printf("Event package selected: %s%n", packageUsed.getName());
         System.out.printf("Event package price: $%d%n", packageUsed.getPrice());
-        System.out.printf("Number of attendees: %s people%n%n", attendees);
+        System.out.printf("Number of attendees: %s people%n", attendees);
+        seatingArrangement.printSeating();
         System.out.printf("Venue selected: %s%n", venue.getName());
         System.out.printf("%s's price: $%s%n", venue.getName(), venue.getPrice());
         System.out.printf("%s's address: %s%n%s's link: %s%n", venue.getName() ,venue.getAddress(), venue.getName(),venue.getLink());
@@ -186,5 +189,21 @@ public class Event {
         budget += packageUsed.getPrice();
 
         return budget;
+    }
+
+    public void setBooked(boolean booked) {
+        this.booked = booked;
+    }
+
+    public boolean isBooked() {
+        return booked;
+    }
+
+    public void setSeatingArrangement(SeatingArrangements seatingArrangement) {
+        this.seatingArrangement = seatingArrangement;
+    }
+
+    public SeatingArrangements getSeatingArrangement() {
+        return seatingArrangement;
     }
 }
