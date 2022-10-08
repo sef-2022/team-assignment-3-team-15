@@ -7,6 +7,8 @@ public class Event {
     public Venue venue = new Venue();
     private Date reservedDate;
     private Customer customer;
+    private int attendees = 1;
+    private Package packageUsed;
 
     public List<String> getFoodMenu() {
         return foodMenu;
@@ -83,6 +85,24 @@ public class Event {
         System.out.printf("%s's booking for eventID: %d%n", this.customer.getName(),eventID);
         System.out.printf("Venue's address: %s%nVenue's link: %s%n", venue.getAddress(),venue.getLink());
         printReserveDate();
+        System.out.printf("Number of attendees: %s%n", this.getAttendees());
+        printMenu();
         System.out.println("--------------");
+    }
+
+    public int getAttendees() {
+        return attendees;
+    }
+
+    public void setAttendees(int attendees) {
+        this.attendees = attendees;
+    }
+
+    public Package getPackageUsed() {
+        return packageUsed;
+    }
+
+    public void setPackageUsed(Package packageUsed) {
+        this.packageUsed = packageUsed;
     }
 }
