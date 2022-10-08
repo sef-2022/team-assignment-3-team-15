@@ -59,7 +59,7 @@ public class Event {
 
     public void printReserveDate() {
         if (this.reservedDate != null){
-            System.out.printf("Reserved date is %tB %<te, %<tY%n", reservedDate);
+            System.out.printf("Venue's reserved date is %tB %<te, %<tY%n", reservedDate);
         }
         else{
             System.out.println("No date reserved");
@@ -68,5 +68,21 @@ public class Event {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void printCustomerName() {
+        System.out.printf("Customer: %s", this.customer.getName());
+    }
+
+    public void printEventSummary(){
+        System.out.println("--------------");
+        System.out.printf("%s's booking for eventID: %d%n", this.customer.getName(),eventID);
+        System.out.printf("Venue's address: %s%nVenue's link: %s%n", venue.getAddress(),venue.getLink());
+        printReserveDate();
+        System.out.println("--------------");
     }
 }
