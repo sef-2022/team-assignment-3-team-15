@@ -2,8 +2,10 @@ import java.util.*;
 
 public class Venue {
     private List<Date> availableDates = new ArrayList<Date>();  
+    private String name = "";
     private String address = "";
     private String link = "";
+    private int price = -999;
 
     public void setAddress(String address) {
         this.address = address;
@@ -24,11 +26,9 @@ public class Venue {
     public Date reserveDate(Date input) {
         boolean isAvailable = availableDates.remove(input);
         if (isAvailable){
-            System.out.printf("%tB %<te, %<tY reserved for event%n", input);
             return input;
         }
         else{
-            System.out.printf("%tB %<te, %<tY is not available for booking%n", input);
             return null;
         }
     }
@@ -47,5 +47,29 @@ public class Venue {
             System.out.println(dates);
         }
         System.out.println();
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void printVenueSummary() {
+        System.out.printf("%s's address: %s%n", name, address);
+        System.out.printf("%s's price: %d%n", name, price);
+        System.out.printf("%s's link: %s%n", name, link);
+        System.out.printf("%s's ", name);
+        printDates();
     }
 }
