@@ -21,13 +21,15 @@ public class Venue {
         return link;
     }
 
-    public void reserveDate(Date input) {
+    public Date reserveDate(Date input) {
         boolean isAvailable = availableDates.remove(input);
         if (isAvailable){
             System.out.printf("%tB %<te, %<tY reserved for event%n", input);
+            return input;
         }
         else{
             System.out.printf("%tB %<te, %<tY is not available for booking%n", input);
+            return null;
         }
     }
 
