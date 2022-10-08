@@ -17,6 +17,8 @@ public class Event {
     private SoundSystem soundSystem;
     private FlowerArrange flowerArrange;
     private SeatingArrangements seatingArrangement;
+    private boolean foodDelivered; 
+    private boolean foodOrdered;
 
     public void setEventID(int eventID) {
         this.eventID = eventID;
@@ -169,26 +171,29 @@ public class Event {
 
     public int calculatTotalPrice() {
         // add additions price
+        int price = 0;
         if (includesFlowerDecor) {
-            budget += flowerArrange.getPrice();
+            price += flowerArrange.getPrice();
         }
         if (includesMusicBand) {
-            budget += musicBand.getPrice();
+            price += musicBand.getPrice();
         }
         if (includesSoundSystem) {
-            budget += soundSystem.getPrice();
+            price += soundSystem.getPrice();
         }
 
         //add menu total price
-        budget += foodMenu.getPricePerHead() * attendees;
+        price += foodMenu.getPricePerHead() * attendees;
 
         //add venue price
-        budget += venue.getPrice();
+        price += venue.getPrice();
 
         //add package cost
-        budget += packageUsed.getPrice();
+        price += packageUsed.getPrice();
 
-        return budget;
+        budget = price;
+
+        return price;
     }
 
     public void setBooked(boolean booked) {
@@ -206,4 +211,29 @@ public class Event {
     public SeatingArrangements getSeatingArrangement() {
         return seatingArrangement;
     }
+
+    public void setFoodDelivered(boolean foodDelivered) {
+        this.foodDelivered = foodDelivered;
+    }
+
+    public boolean isFoodDelivered() {
+        return foodDelivered;
+    }
+
+    public void setFoodOrdered(boolean foodOrdered) {
+        this.foodOrdered = foodOrdered;
+    }
+
+    public boolean isFoodOrdered() {
+        return foodOrdered;
+    }
+
+    public int getBudget() {
+        return budget;
+    }
+
+    public void setBudget(int budget) {
+        this.budget = budget;
+    }
+
 }
