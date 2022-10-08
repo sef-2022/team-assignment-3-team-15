@@ -9,7 +9,7 @@ public class FlowerArrange extends Addition{
         return arrangementType;
     }
     
-    public void printSoundSysSummary() {
+    public void printFlowerArrange() {
         System.out.printf("Flower arrangement type: %s%n", arrangementType);
         System.out.printf("Flower arrangement price: %d%n%n", price);
     }
