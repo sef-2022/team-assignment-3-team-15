@@ -379,5 +379,24 @@ public class Main {
 
         System.out.println("---------------------------------------------------------------------");
 
+        System.out.println("Finance manager updates package price and budget:");
+        System.out.println("---------------------------------------------------");
+
+        FinanceManager financeManager = new FinanceManager();
+        financeManager.setID(47);
+        financeManager.setName("Fiona");
+        financeManager.setBudget(event1, 2000);
+        System.out.println("Updated budget to " + String.valueOf(event1.getBudget()));
+        financeManager.setPackagePrice(grandPack, 400);
+        System.out.println("Updated " + grandPack.getName() + "'s price to " + String.valueOf(grandPack.getPrice()));
+        System.out.println("\n---------------------------------------------------------------------");
+        System.out.println("All managers send their bill to the finance manager:");
+        System.out.println("---------------------------------------------------");
+
+        eventManager.sendBill(600, financeManager);
+        caterer.sendBill(500, financeManager);
+        logisticsManager.sendBill(900, financeManager);
+        System.out.println("Total bill from all managers: " + financeManager.getBill());
+        System.out.println("---------------------------------------------------------------------");
     }
 }
