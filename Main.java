@@ -221,8 +221,8 @@ public class Main {
                 System.out.printf("Payment by %s was successful%n%n", bill.getPaymentOption());
             }
         }
-        else {
-            System.out.println("event not booked");
+        if (event1.isCancelEvent()){
+            System.out.println("event was cancelled");
         }
 
         //create event manager
@@ -397,6 +397,14 @@ public class Main {
         caterer.sendBill(500, financeManager);
         logisticsManager.sendBill(900, financeManager);
         System.out.println("Total bill from all managers: " + financeManager.getBill());
+        System.out.println("---------------------------------------------------------------------");
+
+        System.out.println("Customer cancel an event:");
+        System.out.println("----------------------------");
+        customer.cancelEvent(event1);
+        if (event1.isCancelEvent()){
+            System.out.printf("Event with ID = %d was cancelled%n",event1.getEventID());
+        }
         System.out.println("---------------------------------------------------------------------");
     }
 }
