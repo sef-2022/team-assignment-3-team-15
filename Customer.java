@@ -127,4 +127,8 @@ public class Customer {
         //send message to manager
         return compaintCommunication;
     }
+
+    public void cancelEvent(Event event) {
+        event.setCancelEvent(true);
+    }
 }
