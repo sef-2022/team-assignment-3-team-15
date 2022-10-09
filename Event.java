@@ -22,6 +22,7 @@ public class Event {
     private boolean deliverMusicBand = false;
     private boolean deliverSoundSystem = false;
     private boolean deliverFlowerDecor = false;
+    private boolean cancelEvent = false;
 
     public void setEventID(int eventID) {
         this.eventID = eventID;
@@ -256,5 +257,13 @@ public class Event {
     }
     public boolean isDeliverSoundSystem() {
         return deliverSoundSystem;
+    }
+
+    public boolean isCancelEvent() {
+        return cancelEvent;
+    }
+
+    public void setCancelEvent(boolean cancelEvent) {
+        this.cancelEvent = cancelEvent;
     }
 }
